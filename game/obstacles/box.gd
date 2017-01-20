@@ -1,8 +1,9 @@
 
 extends RigidBody2D
 
+
 const C = preload("res://constants.gd")
-const Bullet = preload("res://game/character/bullet.gd")
+const Bullet = preload("res://game/character/gun/bullet.gd")
 
 func _ready():
 	add_to_group(C.GROUP_EXPLOTION)
@@ -10,12 +11,16 @@ func _ready():
 
 func _onExplotion(explotionPos):
 	var o = _sendRay(get_global_pos(),explotionPos)
-	print("On ex:",o)
 	if o == null or o extends Bullet:
 		var dis = get_global_pos() - explotionPos
-		var impulse = max(1000 - dis.length(), 100)
-		apply_impulse(Vector2(0,0), dis.normalized() * impulse)
-		print("Explotion: ", dis)
+		var len = dis.length()
+		if len < 300:
+			var impulse = -300
+			if dis.x > 0:
+				impulse = 300
+			set_linear_velocity(Vector2(impulse,0))
+#			apply_impulse(Vector2(0,0), dis.normalized() * impulse)
+			print("Explotion: ", dis)
 
 
 func _sendRay(from, to):
@@ -25,3 +30,5 @@ func _sendRay(from, to):
 	if (not result.empty()):
 		return result.collider
 	return null
+
+

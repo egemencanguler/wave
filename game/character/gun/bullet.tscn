@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://game/character/bullet.gd" type="Script" id=1]
+[ext_resource path="res://game/character/gun/bullet.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -22,8 +22,8 @@ bounce = 0.5
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 1
+contact_monitor = true
 sleeping = false
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
@@ -41,9 +41,11 @@ _update_shape_index = 0
 [node name="ExplotionTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 2.0
-one_shot = false
+wait_time = 0.1
+one_shot = true
 autostart = false
+
+[connection signal="body_enter" from="." to="." method="_on_Bullet_body_enter"]
 
 [connection signal="timeout" from="ExplotionTimer" to="." method="_on_ExplotionTimer_timeout"]
 

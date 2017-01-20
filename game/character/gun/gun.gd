@@ -1,7 +1,9 @@
 
 extends Node2D
 
-const Bullet = preload("res://game/character/bullet.tscn")
+const Bullet = preload("res://game/character/gun/bullet.tscn")
+
+var bulletSpeed = 700
 var dir = Vector2()
 var cooldown = false
 func _ready():
@@ -18,7 +20,6 @@ func _draw():
 	draw_line(Vector2(), dir, Color(1,0,0,1))
 	pass
 
-
 func shoot():
 	if cooldown:
 		return
@@ -29,7 +30,7 @@ func shoot():
 	var b = Bullet.instance()
 	add_child(b)
 	b.set_global_pos(get_global_pos())
-	b.apply_impulse(Vector2(), dir)
+	b.apply_impulse(Vector2(), dir.normalized() * bulletSpeed)
 	pass
 
 
