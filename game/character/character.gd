@@ -102,7 +102,7 @@ func changeAnimationState(s):
 		get_node("AnimatedSprite").set_scale(scale)
 	elif state == STATE_NOT_MOVING:
 		get_node("AnimationPlayer").stop()
-		get_node("AnimatedSprite").set_frame(0)
+		get_node("AnimatedSprite").set_frame(6)
 		print("Not Moving")
 	elif state == STATE_JUMPING:
 		print("Jumping")

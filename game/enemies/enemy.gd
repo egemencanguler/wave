@@ -23,6 +23,7 @@ func _ready():
 		get_node("ShootTimer").start()
 	add_to_group(C.GROUP_ENEMY)
 	set_fixed_process(true)
+	set_process_unhandled_input(true)
 	pass
 
 func _fixed_process(delta):
@@ -61,14 +62,6 @@ func connectPlayer(player):
 
 func _on_Enemy_input_event( viewport, event, shape_idx ):
 	print("Enemy Input")
-	if !controllable and event.is_action_pressed("click_right"):
-		controllable = true
-		get_node("Sprite").set_modulate(Color(1,0,0,1))
-		emit_signal("controllableChanged",true)
-	elif controllable and event.is_action_pressed("click_right"):
-		controllable = false
-		get_node("Sprite").set_modulate(Color(1,1,1,1))
-		emit_signal("controllableChanged",false)
 
 const STATE_MOVING_RIGHT = 0
 const STATE_MOVING_LEFT = 1
@@ -103,12 +96,13 @@ func _on_ShootTimer_timeout():
 	shoot()
 	pass # replace with function body
 
-
-func _on_Enemy_mouse_enter():
-	emit_signal("mouseEnter",true)
-	pass # replace with function body
-
-
-func _on_Enemy_mouse_exit():
-	emit_signal("mouseEnter",false)
-	pass # replace with function body
+func _unhandled_input(event):
+	if event.is_action_pressed("click_right") and event.global_pos.distance_to(get_global_pos()) < 64:
+		if !controllable:
+			controllable = true
+			get_node("Sprite").set_modulate(Color(1,0,0,1))
+			emit_signal("controllableChanged",true)
+		elif controllable:
+			controllable = false
+			get_node("Sprite").set_modulate(Color(1,1,1,1))
+			emit_signal("controllableChanged",false)

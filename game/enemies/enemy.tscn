@@ -56,12 +56,6 @@ _update_shape_index = 0
 
 [connection signal="body_enter" from="." to="." method="_on_Enemy_body_enter"]
 
-[connection signal="input_event" from="." to="." method="_on_Enemy_input_event"]
-
-[connection signal="mouse_enter" from="." to="." method="_on_Enemy_mouse_enter"]
-
-[connection signal="mouse_exit" from="." to="." method="_on_Enemy_mouse_exit"]
-
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
 

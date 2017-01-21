@@ -17,7 +17,6 @@ func _process(delta):
 	if charPos.x > 1280:
 		get_tree().change_scene(getLevelPath(levelNumber + 1))
 
-
 func onCharacterDie():
 	gameOver()
 
