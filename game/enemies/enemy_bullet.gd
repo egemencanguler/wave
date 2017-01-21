@@ -8,12 +8,7 @@ const Bullet = preload("res://game/character/gun/bullet.gd")
 func _ready():
 	pass
 
-
-
-
 func _on_EnemyBullet_body_enter( body ):
-	if body extends Character:
-		body.kill()
 	if body extends Bullet:
 		return
 	queue_free()

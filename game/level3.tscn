@@ -31,10 +31,6 @@ levelNumber = 3
 transform/pos = Vector2( 680, 320 )
 dangerous = true
 
-[node name="Box1" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 248, 608 )
-
 [node name="Character" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 104, 536 )

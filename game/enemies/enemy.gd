@@ -52,9 +52,8 @@ func _fixed_process(delta):
 func _on_Enemy_body_enter( body ):
 	if body extends Box:
 		if body.dangerous:
+			emit_signal("controllableChanged",false)
 			queue_free()
-	elif body extends Character:
-		body.kill()
 
 func connectPlayer(player):
 	connect("controllableChanged",player,"_onControllableChanged")
@@ -96,13 +95,21 @@ func _on_ShootTimer_timeout():
 	shoot()
 	pass # replace with function body
 
+var mouseEnterred = false
 func _unhandled_input(event):
-	if event.is_action_pressed("click_right") and event.global_pos.distance_to(get_global_pos()) < 64:
+	if get_global_mouse_pos().distance_to(get_global_pos()) < 100:
+		emit_signal("mouseEnter",true)
+		mouseEnterred = true
+	elif mouseEnterred:
+		emit_signal("mouseEnter",false)
+		mouseEnterred = false
+	if mouseEnterred and event.is_action_pressed("click_right"):
 		if !controllable:
 			controllable = true
 			get_node("Sprite").set_modulate(Color(1,0,0,1))
 			emit_signal("controllableChanged",true)
-		elif controllable:
-			controllable = false
-			get_node("Sprite").set_modulate(Color(1,1,1,1))
-			emit_signal("controllableChanged",false)
+			return
+	if controllable and event.is_action_pressed("click_right"):
+		controllable = false
+		get_node("Sprite").set_modulate(Color(1,1,1,1))
+		emit_signal("controllableChanged",false)

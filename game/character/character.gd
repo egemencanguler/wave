@@ -4,13 +4,17 @@ extends KinematicBody2D
 const GRAVITY = 1200.0
 const WALK_ACCELERATION = 1000
 const WALK_SLOW_ACCELERATION = 1000
-const WALK_MAX_SPEED = 400
+const WALK_MAX_SPEED = 300
 const MIN_SPEED = 30
 const JUMP = 500
 
 var velocity = Vector2()
 var acceleration = Vector2()
+
 const Enemy = preload("res://game/enemies/enemy.gd")
+const Box = preload("res://game/obstacles/box.gd")
+const EnemyBullet = preload("res://game/enemies/enemy_bullet.gd")
+
 var controllable = true
 var onAir = false
 
@@ -53,6 +57,7 @@ func _fixed_process(delta):
 			acceleration.x = 0
 	move(motion)
 	if is_colliding():
+		_handleCollision()
 		var n = get_collision_normal()
 		if abs(n.angle()) > 2.5:
 			onAir = false
@@ -67,16 +72,14 @@ func _fixed_process(delta):
 	if Input.is_action_pressed("click") and controllable:
 		get_node("Gun").shoot()
 
-func _isOnFloor():
-	if is_colliding():
-		var n = get_collision_normal()
-		return true
-	return false
-
 func kill():
 	emit_signal("die")
 	queue_free()
 
+func _handleCollision():
+	var object = get_collider()
+	if object extends Enemy or object extends EnemyBullet:
+		kill()
 func _onControllableChanged(con):
 	controllable = !con
 

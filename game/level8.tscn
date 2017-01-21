@@ -1,0 +1,120 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://game/game.gd" type="Script" id=1]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1749.02, 460.585, 2266.7, 460.585, 2266.7, 665.385, 1749.02, 562.985 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1749.02, 562.985, 2266.7, 665.385, 935.522, 665.385, 935.522, 562.985 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 359.5, 357.545, 0, 357.545, 0, 285.545, 359.5, 285.545 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 359.5, 69.5445, 359.5, 213.545, 287.6, 141.545 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 143.8, 69.5445, 359.5, 69.5445, 287.6, 141.545, 143.8, 141.545 )
+
+[sub_resource type="Curve2D" id=2]
+
+bake_interval = 5.0
+_data = { "points":Vector2Array(  ) }
+
+[node name="level8" type="Node2D"]
+
+script/script = ExtResource( 1 )
+levelNumber = 8
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 247.7, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+transform/pos = Vector2( 0, 2.45548 )
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 0.972222, 0, 0, 1.40625, -905.382, -216.056 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 4 )
+shapes/1/transform = Matrix32( 0.972222, 0, 0, 1.40625, -905.382, -216.056 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 5 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 1.85062, 11.1036 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 6 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 7 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D 3" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+transform/pos = Vector2( -905.382, -216.056 )
+transform/scale = Vector2( 0.972222, 1.40625 )
+build_mode = 0
+polygon = Vector2Array( 1749.02, 460.585, 1749.02, 562.985, 935.522, 562.985, 935.522, 665.385, 2266.7, 665.385, 2266.7, 460.585 )
+shape_range = Vector2( 0, 1 )
+trigger = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+transform/pos = Vector2( 1.85062, 11.1036 )
+transform/scale = Vector2( 1, 1 )
+build_mode = 0
+polygon = Vector2Array( 359.5, 285.545, 0, 285.545, 0, 357.545, 359.5, 357.545 )
+shape_range = Vector2( 2, 2 )
+trigger = false
+
+[node name="CollisionPolygon2D 2" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 359.5, 213.545, 287.6, 141.545, 143.8, 141.545, 143.8, 69.5445, 359.5, 69.5445 )
+shape_range = Vector2( 3, 4 )
+trigger = false
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 103.9, 464 )
+
+[node name="Box" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 247.7, 248 )
+
+[node name="Path2D" type="Path2D" parent="."]
+
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+
+offset = 0.0
+h_offset = 0.0
+v_offset = 0.0
+rotate = false
+cubic_interp = true
+loop = true
+lookahead = 4.0
+
+

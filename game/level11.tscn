@@ -1,0 +1,138 @@
+[gd_scene load_steps=12 format=1]
+
+[ext_resource path="res://game/game.gd" type="Script" id=1]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, 432, 1294.2, 432, 1294.2, 504, 0, 504 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 790.9, 432, 934.7, 504, 0, 504, 0, 432 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 913.13, -21.6, 913.13, 50.4, 625.53, 50.4, 625.53, -21.6 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1150.4, 288, 647.1, 288, 862.8, 216, 1294.2, 216 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1222.3, 360, 1150.4, 288, 1294.2, 216 )
+
+[sub_resource type="ConvexPolygonShape2D" id=6]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1222.3, 360, 1294.2, 216, 1294.2, 648, 1222.3, 648 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1294.2, 648, 1222.3, 648, 1222.3, 648 )
+
+[node name="level11" type="Node2D"]
+
+script/script = ExtResource( 1 )
+levelNumber = 11
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 0.999999, 1.97214, 215.044 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 3 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, -625.53, 165.6 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 4 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 5 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 6 )
+shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/5/trigger = false
+shapes/6/shape = SubResource( 7 )
+shapes/6/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/6/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+transform/pos = Vector2( 1.97214, 215.044 )
+transform/scale = Vector2( 1, 0.999999 )
+build_mode = 0
+polygon = Vector2Array( 0, 432, 1294.2, 432, 1294.2, 504, 0, 504 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="CollisionPolygon2D 2" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 790.9, 432, 934.7, 504, 0, 504, 0, 432 )
+shape_range = Vector2( 1, 1 )
+trigger = false
+
+[node name="CollisionPolygon2D 3" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+transform/pos = Vector2( -625.53, 165.6 )
+transform/scale = Vector2( 1, 1 )
+build_mode = 0
+polygon = Vector2Array( 625.53, -21.6, 625.53, 50.4, 913.13, 50.4, 913.13, -21.6 )
+shape_range = Vector2( 2, 2 )
+trigger = false
+
+[node name="CollisionPolygon2D 4" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 1222.3, 648, 1222.3, 648, 1222.3, 360, 1150.4, 288, 647.1, 288, 862.8, 216, 1294.2, 216, 1294.2, 648 )
+shape_range = Vector2( 3, 6 )
+trigger = false
+
+[node name="Character" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 103.9, 608 )
+
+[node name="Box" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 247.7, 104 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 1110.5, 536 )
+shoot = true
+
+[node name="Enemy 2" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 319.6, 392 )
+shoot = true
+
+[node name="Enemy 3" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 103.9, 104 )
+shoot = true
+
+[node name="Box 2" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 751, 392 )
+
+
