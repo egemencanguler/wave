@@ -21,9 +21,12 @@ func _fixed_process(delta):
 	var vel = get_linear_velocity()
 	if Input.is_action_pressed("ui_right"):
 		vel.x = SPEED
+		changeAnimationState(STATE_MOVING_RIGHT)
 	elif Input.is_action_pressed("ui_left"):
 		vel.x = -SPEED
+		changeAnimationState(STATE_MOVING_LEFT)
 	else:
+		changeAnimationState(STATE_NOT_MOVING)
 		vel.x = 0
 	set_linear_velocity(vel)
 
@@ -68,3 +71,19 @@ func _on_Enemy_input_event( viewport, event, shape_idx ):
 		get_node("Sprite").set_modulate(Color(1,1,1,1))
 		emit_signal("controllableChanged",false)
 	pass # replace with function body
+
+const STATE_MOVING_RIGHT = 0
+const STATE_MOVING_LEFT = 1
+const STATE_NOT_MOVING = 2
+
+var state = -1
+func changeAnimationState(s):
+	if state == s:
+		return
+	state = s
+	if state == STATE_MOVING_LEFT:
+		set_scale(Vector2(-1,1))
+	elif state == STATE_MOVING_RIGHT:
+		set_scale(Vector2(1,1))
+	elif state == STATE_NOT_MOVING:
+		print("Not moving")

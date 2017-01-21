@@ -2,13 +2,13 @@
 extends Node2D
 
 const C = preload("res://constants.gd")
-const BG = preload("res://game/background/parallaxbackground.tscn")
+#const BG = preload("res://game/background/parallaxbackground.tscn")
 export(int) var levelNumber = 1
 
 func _ready():
 	get_tree().call_group(0,C.GROUP_ENEMY,"connectPlayer",get_node("Character"))
 	get_node("Character").connect("die",self,"onCharacterDie")
-	add_child(BG.instance())
+#	add_child(BG.instance())
 	set_process(true)
 	pass
 

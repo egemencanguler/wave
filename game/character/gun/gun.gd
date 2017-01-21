@@ -2,6 +2,7 @@
 extends Node2D
 
 const Bullet = preload("res://game/character/gun/bullet.tscn")
+const TEX_AIM = preload("res://game/character/gun/aim.png")
 const CHAR_WIDTH = 50
 
 var bulletSpeed = 700
@@ -17,6 +18,7 @@ func _fixed_process(delta):
 
 func _draw():
 	draw_line(Vector2(),dir,Color(1,0,0,1))
+	draw_texture(TEX_AIM,dir-TEX_AIM.get_size()/2)
 	pass
 
 func _mid(start, end):

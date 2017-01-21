@@ -59,7 +59,7 @@ func _fixed_process(delta):
 			motion = n.slide(motion)
 			velocity = n.slide(velocity)
 			move(motion)
-	if Input.is_action_pressed("click"):
+	if Input.is_action_pressed("click") and controllable:
 		get_node("Gun").shoot()
 
 func _isOnFloor():
@@ -85,9 +85,9 @@ func changeAnimationState(s):
 		return
 	state = s
 	if state == STATE_MOVING_LEFT:
-		set_scale(Vector2(-1,1))
+		get_node("Sprite").set_scale(Vector2(-1,1))
 	elif state == STATE_MOVING_RIGHT:
-		set_scale(Vector2(1,1))
+		get_node("Sprite").set_scale(Vector2(1,1))
 	elif state == STATE_NOT_MOVING:
 		print("Not Moving")
 	elif state == STATE_JUMPING:

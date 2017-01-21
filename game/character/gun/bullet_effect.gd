@@ -2,6 +2,7 @@
 extends Sprite
 
 
+var remove = false
 func _ready():
 	set_process(true)
 	get_node("Timer").start(1)
@@ -10,11 +11,19 @@ func _ready():
 
 
 func _process(delta):
-	var nt = get_node("Timer").getNormalizedTimeLeft()
-	set_opacity(nt)
+	if remove:
+		set_opacity(get_node("Timer").getNormalizedTimeLeft())
+	else:
+		var dnt = get_node("Timer").getDenormalizedTimeLeft()
+		dnt += 5 + dnt * 5
+		set_scale(Vector2(dnt,dnt))
 
 
 
 func _on_Timer_timesUp():
-	queue_free()
+	if remove:
+		queue_free()
+	else:
+		remove = true
+		get_node("Timer").start(0.5)
 	pass # replace with function body

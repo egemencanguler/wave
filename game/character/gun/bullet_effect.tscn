@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasItemShader" id=1]
 
-_code = { "fragment":"uniform float frequency=60;\nuniform float depth = 0.005;\n\nvec2 uv = SCREEN_UV;\nuv.x += sin((uv.y + uv.x)*frequency+TIME)*depth;\nuv.y += sin((uv.y + uv.x)*frequency+TIME)*depth;\nuv.x = clamp(uv.x,0,1);\n\nvec3 c = texscreen(uv);\n\nCOLOR.rgb=c;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
+_code = { "fragment":"uniform float frequency=60;\nuniform float depth = 0.005;\nuniform vec2 center = vec2(0.5,0.5);\nfloat dis = length(UV-vec2(0.5,0.5));\n\nvec2 uv = SCREEN_UV;\nuv.x += sin(dis * frequency + TIME)*depth;\nuv.y += sin(dis * frequency + TIME)*depth;\n//uv.x = clamp(uv.x,0,1);\n//uv.y = clamp(uv.y,0,1);\n\nvec3 c = texscreen(uv);\n\n\nCOLOR.rgb=c;\n", "fragment_ofs":0, "light":"", "light_ofs":0, "vertex":"", "vertex_ofs":0 }
 
 [sub_resource type="CanvasItemMaterial" id=2]
 
@@ -14,6 +14,7 @@ shader/shader = SubResource( 1 )
 shader/shading_mode = 0
 shader_param/frequency = 60.0
 shader_param/depth = 0.005
+shader_param/center = Vector2( 0.5, 0.5 )
 
 [node name="BulletEffect" type="Sprite"]
 
