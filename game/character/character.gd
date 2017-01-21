@@ -6,7 +6,7 @@ const WALK_ACCELERATION = 1000
 const WALK_SLOW_ACCELERATION = 1000
 const WALK_MAX_SPEED = 300
 const MIN_SPEED = 30
-const JUMP = 500
+const JUMP = 550
 
 var velocity = Vector2()
 var acceleration = Vector2()

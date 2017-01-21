@@ -8,6 +8,7 @@ const Box = preload("res://game/obstacles/box.gd")
 const Character = preload("res://game/character/character.gd")
 const SPEED = 150
 
+
 export(bool) var shoot = false
 export(float) var shootInterval = 1
 export(float) var shootAngle = 0
@@ -18,6 +19,7 @@ var controllable = false
 
 func _ready():
 #	add_to_group(C.GROUP_EXPLOTION)
+	get_node("Sprite").setArmRotation(shootAngle)
 	if shoot:
 		get_node("ShootTimer").set_wait_time(shootInterval)
 		get_node("ShootTimer").start()
@@ -52,8 +54,15 @@ func _fixed_process(delta):
 func _on_Enemy_body_enter( body ):
 	if body extends Box:
 		if body.dangerous:
+			print("HOOO")
 			emit_signal("controllableChanged",false)
-			queue_free()
+			get_node("SamplePlayer2D").play("death")
+			var timer = Timer.new()
+			hide()
+			add_child(timer)
+			timer.connect("timeout", self, "queue_free")
+			timer.set_wait_time(0.5)
+			timer.start()
 
 func connectPlayer(player):
 	connect("controllableChanged",player,"_onControllableChanged")
@@ -83,11 +92,15 @@ func changeAnimationState(s):
 
 const BULLET_SPEED = 300
 func shoot():
+	get_node("Sprite").shootAnim()
+	get_node("SamplePlayer2D").play("fire")
 	var bullet = EnemyBullet.instance()
 	get_tree().get_current_scene().add_child(bullet)
 	var dir = Vector2(get_node("Sprite").get_scale().x,0)
 	dir = dir.rotated(sign(get_node("Sprite").get_scale().x) * (shootAngle / 360) * 2 * PI)
-	bullet.set_global_pos(get_global_pos() + dir * 100)
+	var pos = get_global_pos() + dir * 140
+	pos.y -= 10
+	bullet.set_global_pos(pos)
 	bullet.set_linear_velocity(dir * BULLET_SPEED)
 
 
@@ -106,10 +119,10 @@ func _unhandled_input(event):
 	if mouseEnterred and event.is_action_pressed("click_right"):
 		if !controllable:
 			controllable = true
-			get_node("Sprite").set_modulate(Color(1,0,0,1))
+			get_node("Sprite").setBrainMode(true)
 			emit_signal("controllableChanged",true)
 			return
 	if controllable and event.is_action_pressed("click_right"):
 		controllable = false
-		get_node("Sprite").set_modulate(Color(1,1,1,1))
+		get_node("Sprite").setBrainMode(false)
 		emit_signal("controllableChanged",false)

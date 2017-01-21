@@ -6,17 +6,17 @@
 [ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/background/ground.png" type="Texture" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=8]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, 648, 1296, 648, 1296, 720, 0, 720 )
 
-[sub_resource type="ConvexPolygonShape2D" id=9]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1008, 360, 1008, 432, 576, 432, 576, 360 )
 
-[sub_resource type="Curve2D" id=7]
+[sub_resource type="Curve2D" id=3]
 
 bake_interval = 5.0
 _data = { "points":Vector2Array( 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 72, 144, 0, 0, 0, 0, 0, 144 ) }
@@ -29,10 +29,10 @@ levelNumber = 6
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 9 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 collision/layers = 1
@@ -59,7 +59,7 @@ trigger = false
 [node name="Path2D1" type="Path2D" parent="."]
 
 transform/pos = Vector2( 464, 464 )
-curve = SubResource( 7 )
+curve = SubResource( 3 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D1"]
 
