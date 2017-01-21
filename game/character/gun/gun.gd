@@ -33,7 +33,7 @@ func shoot():
 		get_node("CooldownTimer").start()
 	print("Shoot")
 	var b = Bullet.instance()
-	add_child(b)
+	get_tree().get_current_scene().add_child(b)
 	var dn = dir.normalized()
 	b.set_global_pos(get_global_pos() + dn * CHAR_WIDTH)
 	b.apply_impulse(Vector2(), dir.normalized() * bulletSpeed)

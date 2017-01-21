@@ -2,11 +2,11 @@
 extends KinematicBody2D
 
 const GRAVITY = 1200.0
-const WALK_ACCELERATION = 800
+const WALK_ACCELERATION = 1000
 const WALK_SLOW_ACCELERATION = 1000
 const WALK_MAX_SPEED = 400
 const MIN_SPEED = 30
-const JUMP = 400
+const JUMP = 500
 
 var velocity = Vector2()
 var acceleration = Vector2()
@@ -18,30 +18,37 @@ signal die()
 
 func _ready():
 	set_fixed_process(true)
+	set_process(true)
 
 func _fixed_process(delta):
+	var moveLeft = Input.is_action_pressed("ui_left")
+	var moveRight = Input.is_action_pressed("ui_right")
+	var lean = Input.is_action_pressed("ui_down")
 	acceleration.y = GRAVITY
 	velocity += delta * acceleration
 	if abs(velocity.x) > WALK_MAX_SPEED:
 		velocity.x = sign(velocity.x) * WALK_MAX_SPEED
 	var motion = velocity * delta
-	if Input.is_action_pressed("ui_left") and controllable:
+	if moveLeft and controllable:
 		if velocity.x > 0:
 			velocity.x = 0
 		acceleration.x = -WALK_ACCELERATION
 		changeAnimationState(STATE_MOVING_LEFT)
-	elif Input.is_action_pressed("ui_right") and controllable:
+	elif moveRight and controllable:
 		if velocity.x < 0:
 			velocity.x = 0
 		acceleration.x = WALK_ACCELERATION
 		changeAnimationState(STATE_MOVING_RIGHT)
-	else:
+	if lean and controllable:
+		_lean()
+	if !moveLeft and !moveRight:
 		if velocity.x > MIN_SPEED:
 			acceleration.x = -WALK_SLOW_ACCELERATION
 		elif velocity.x < -MIN_SPEED:
 			acceleration.x = WALK_SLOW_ACCELERATION
 		else:
-			changeAnimationState(STATE_NOT_MOVING)
+			if !lean:
+				changeAnimationState(STATE_NOT_MOVING)
 			velocity.x = 0
 			acceleration.x = 0
 	move(motion)
@@ -79,17 +86,44 @@ const STATE_MOVING_LEFT = 0
 const STATE_MOVING_RIGHT= 1
 const STATE_NOT_MOVING = 2
 const STATE_JUMPING = 3
+const STATE_LEAN = 4
 var state
 func changeAnimationState(s):
 	if state == s:
 		return
+	if state == STATE_LEAN and s == STATE_NOT_MOVING:
+		_stand()
 	state = s
 	if state == STATE_MOVING_LEFT:
-		get_node("Sprite").set_scale(Vector2(-1,1))
+		var scale = get_node("AnimatedSprite").get_scale()
+		scale.x = -abs(scale.x)
+		get_node("AnimatedSprite").set_scale(scale)
 	elif state == STATE_MOVING_RIGHT:
-		get_node("Sprite").set_scale(Vector2(1,1))
+		var scale = get_node("AnimatedSprite").get_scale()
+		scale.x = abs(scale.x)
+		get_node("AnimatedSprite").set_scale(scale)
 	elif state == STATE_NOT_MOVING:
+		get_node("AnimationPlayer").stop()
+		get_node("AnimatedSprite").set_frame(0)
 		print("Not Moving")
 	elif state == STATE_JUMPING:
 		print("Jumping")
+	elif state == STATE_LEAN:
+		_lean()
 	pass
+
+func _lean():
+#	get_node("Sprite").set_pos(Vector2(0,36))
+#	get_node("Sprite").set_scale(Vector2(1,0.5))
+#	changeAnimationState(STATE_LEAN)
+	pass
+
+func _stand():
+	pass
+#	get_node("Sprite").set_pos(Vector2(0,0))
+#	get_node("Sprite").set_scale(Vector2(1,1))
+
+func _process(delta):
+	if state == STATE_MOVING_LEFT or state == STATE_MOVING_RIGHT:
+		if !get_node("AnimationPlayer").is_playing():
+			get_node("AnimationPlayer").play("walk")

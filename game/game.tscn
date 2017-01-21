@@ -38,6 +38,7 @@ transform/pos = Vector2( 160, 480 )
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 608, 480 )
+shoot = false
 
 [node name="Box" parent="." instance=ExtResource( 4 )]
 
