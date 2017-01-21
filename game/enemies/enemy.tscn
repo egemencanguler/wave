@@ -10,7 +10,7 @@ extents = Vector2( 32, 32 )
 
 [node name="Enemy" type="RigidBody2D"]
 
-input/pickable = false
+input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
@@ -24,9 +24,9 @@ gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
 contacts_reported = 1
-contact_monitor = false
+contact_monitor = true
 sleeping = false
-can_sleep = true
+can_sleep = false
 velocity/linear = Vector2( 0, 0 )
 velocity/angular = 0.0
 damp_override/linear = -1.0
@@ -35,7 +35,8 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/scale = Vector2( 0.390244, 0.390244 )
+transform/pos = Vector2( -0.158424, -0.13002 )
+transform/scale = Vector2( 0.974398, 0.984765 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -45,5 +46,7 @@ trigger = false
 _update_shape_index = 0
 
 [connection signal="body_enter" from="." to="." method="_on_Enemy_body_enter"]
+
+[connection signal="input_event" from="." to="." method="_on_Enemy_input_event"]
 
 

@@ -1,0 +1,127 @@
+[gd_scene load_steps=10 format=1]
+
+[ext_resource path="res://game/game.gd" type="Script" id=1]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/background/basic copy.png" type="Texture" id=3]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, 576, 648, 576, 648, 720, 0, 864 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 864, 720, 864, 576, 1296, 576, 1296, 864 )
+
+[sub_resource type="ConvexPolygonShape2D" id=3]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 864, 720, 1296, 864, 0, 864, 648, 720 )
+
+[sub_resource type="ConvexPolygonShape2D" id=4]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, 576, 0, 576, 0, 864 )
+
+[sub_resource type="ConvexPolygonShape2D" id=5]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1296, 288, 1296, 432, 1080, 432, 1080, 288 )
+
+[node name="level2" type="Node2D"]
+
+script/script = ExtResource( 1 )
+levelNumber = 2
+
+[node name="Character" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 104, 104 )
+
+[node name="Floor" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, -124 )
+
+[node name="f" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 110.772, 795.541 )
+texture = ExtResource( 3 )
+
+[node name="f1" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 327.28, 798.058 )
+texture = ExtResource( 3 )
+
+[node name="f2" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 546.305, 803.094 )
+texture = ExtResource( 3 )
+
+[node name="f3" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 755.26, 918.9 )
+texture = ExtResource( 3 )
+
+[node name="f4" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 964.216, 803.094 )
+texture = ExtResource( 3 )
+
+[node name="f5" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 1175.69, 803.094 )
+texture = ExtResource( 3 )
+
+[node name="f6" type="Sprite" parent="Floor"]
+
+transform/pos = Vector2( 1190, 510 )
+texture = ExtResource( 3 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+shapes/2/shape = SubResource( 3 )
+shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/2/trigger = false
+shapes/3/shape = SubResource( 4 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 5 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 0, 576, 648, 576, 648, 720, 864, 720, 864, 576, 1296, 576, 1296, 864, 0, 864, 0, 576 )
+shape_range = Vector2( 0, 3 )
+trigger = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 1080, 288, 1080, 432, 1296, 432, 1296, 288 )
+shape_range = Vector2( 4, 4 )
+trigger = false
+__meta__ = { "_edit_lock_":true }
+
+[node name="Box" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 896, 536 )
+
+

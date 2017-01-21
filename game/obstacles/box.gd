@@ -4,6 +4,7 @@ extends RigidBody2D
 
 const C = preload("res://constants.gd")
 const Bullet = preload("res://game/character/gun/bullet.gd")
+const U = preload("res://utilities/util.gd")
 
 func _ready():
 	add_to_group(C.GROUP_EXPLOTION)
@@ -19,7 +20,6 @@ func _onExplotion(explotionPos):
 			if dis.x > 0:
 				impulse = 300
 			set_linear_velocity(Vector2(impulse,0))
-#			apply_impulse(Vector2(0,0), dis.normalized() * impulse)
 			print("Explotion: ", dis)
 
 

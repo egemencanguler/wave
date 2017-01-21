@@ -3,6 +3,7 @@ extends RigidBody2D
 
 const C = preload("res://constants.gd")
 const Character = preload("res://game/character/character.gd")
+const BulletEffect = preload("res://game/character/gun/bullet_effect.tscn")
 
 func _ready():
 	pass
@@ -10,6 +11,9 @@ func _ready():
 
 func explode():
 	get_tree().call_group(0,C.GROUP_EXPLOTION,"_onExplotion",get_global_pos())
+	var effect = BulletEffect.instance()
+	get_tree().get_current_scene().add_child(effect)
+	effect.set_global_pos(get_global_pos())
 
 func _on_ExplotionTimer_timeout():
 	explode()

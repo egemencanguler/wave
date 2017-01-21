@@ -1,0 +1,107 @@
+[gd_scene load_steps=8 format=1]
+
+[ext_resource path="res://game/game.gd" type="Script" id=1]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/background/basic copy.png" type="Texture" id=4]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=5]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 0, 648, 1296, 648, 1296, 792, 0, 792 )
+
+[sub_resource type="ConvexPolygonShape2D" id=2]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1080, 360, 1080, 504, 648, 504, 648, 360 )
+
+[node name="Level3" type="Node2D"]
+
+script/script = ExtResource( 1 )
+levelNumber = 1
+
+[node name="Box" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 680, 320 )
+
+[node name="Character" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 104, 536 )
+
+[node name="f" type="Sprite" parent="."]
+
+transform/pos = Vector2( 110, 726 )
+texture = ExtResource( 4 )
+
+[node name="f1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 326, 726 )
+texture = ExtResource( 4 )
+
+[node name="f2" type="Sprite" parent="."]
+
+transform/pos = Vector2( 542, 726 )
+texture = ExtResource( 4 )
+
+[node name="f3" type="Sprite" parent="."]
+
+transform/pos = Vector2( 758, 726 )
+texture = ExtResource( 4 )
+
+[node name="f4" type="Sprite" parent="."]
+
+transform/pos = Vector2( 974, 726 )
+texture = ExtResource( 4 )
+
+[node name="f5" type="Sprite" parent="."]
+
+transform/pos = Vector2( 1190, 726 )
+texture = ExtResource( 4 )
+
+[node name="f6" type="Sprite" parent="."]
+
+transform/pos = Vector2( 758, 438 )
+texture = ExtResource( 4 )
+
+[node name="f7" type="Sprite" parent="."]
+
+transform/pos = Vector2( 974, 438 )
+texture = ExtResource( 4 )
+
+[node name="Enemy" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 514, 608 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+visibility/visible = false
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+shapes/1/shape = SubResource( 2 )
+shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/1/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 0, 648, 1296, 648, 1296, 792, 0, 792 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 648, 360, 648, 504, 1080, 504, 1080, 360 )
+shape_range = Vector2( 1, 1 )
+trigger = false
+
+
