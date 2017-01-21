@@ -3,21 +3,21 @@
 [ext_resource path="res://game/enemies/enemy.gd" type="Script" id=1]
 [ext_resource path="res://game/enemies/adolf.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 32, 70 )
+radius = 64.0
 
 [node name="Enemy" type="RigidBody2D"]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -9, -5 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-collision/layers = 1
+collision/layers = 2
 collision/mask = 1
 mode = 2
-mass = 1.0
+mass = 400.0
 friction = 1.0
 bounce = 0.0
 gravity_scale = 1.0
@@ -33,18 +33,13 @@ damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
 shoot = false
+shootInterval = 1
+shootAngle = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 15.8416, -0.13002 )
 texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-transform/pos = Vector2( -9, -5 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
+offset = Vector2( 30, 0 )
 
 [node name="ShootTimer" type="Timer" parent="."]
 
@@ -53,9 +48,19 @@ wait_time = 2.0
 one_shot = false
 autostart = false
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
 [connection signal="body_enter" from="." to="." method="_on_Enemy_body_enter"]
 
 [connection signal="input_event" from="." to="." method="_on_Enemy_input_event"]
+
+[connection signal="mouse_enter" from="." to="." method="_on_Enemy_mouse_enter"]
+
+[connection signal="mouse_exit" from="." to="." method="_on_Enemy_mouse_exit"]
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 

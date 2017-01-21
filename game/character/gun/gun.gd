@@ -2,12 +2,14 @@
 extends Node2D
 
 const Bullet = preload("res://game/character/gun/bullet.tscn")
-const TEX_AIM = preload("res://game/character/gun/aim.png")
+const TEX_TARGET = preload("res://game/character/gun/target.png")
+const TEX_BRAIN = preload("res://game/character/gun/bullet.png")
 const CHAR_WIDTH = 50
 
 var bulletSpeed = 700
 var dir = Vector2()
 var cooldown = false
+var texCursor = TEX_TARGET
 func _ready():
 	set_fixed_process(true)
 	pass
@@ -17,8 +19,8 @@ func _fixed_process(delta):
 	update()
 
 func _draw():
-	draw_line(Vector2(),dir,Color(1,0,0,1))
-	draw_texture(TEX_AIM,dir-TEX_AIM.get_size()/2)
+#	draw_line(Vector2(),dir,Color(1,0,0,1))
+	draw_texture(texCursor,dir-texCursor.get_size()/2)
 	pass
 
 func _mid(start, end):
@@ -39,6 +41,11 @@ func shoot():
 	b.apply_impulse(Vector2(), dir.normalized() * bulletSpeed)
 	pass
 
+func changeCursorBrain():
+	texCursor = TEX_BRAIN
+
+func changeCursorGun():
+	texCursor = TEX_TARGET
 
 func _on_CooldownTimer_timeout():
 	cooldown = false

@@ -53,8 +53,6 @@ func _fixed_process(delta):
 			acceleration.x = 0
 	move(motion)
 	if is_colliding():
-		if get_collider() extends Enemy:
-			kill()
 		var n = get_collision_normal()
 		if abs(n.angle()) > 2.5:
 			onAir = false
@@ -127,3 +125,9 @@ func _process(delta):
 	if state == STATE_MOVING_LEFT or state == STATE_MOVING_RIGHT:
 		if !get_node("AnimationPlayer").is_playing():
 			get_node("AnimationPlayer").play("walk")
+
+func _onEnemyMouseEnter(enter):
+	if enter:
+		get_node("Gun").changeCursorBrain()
+	else:
+		get_node("Gun").changeCursorGun()

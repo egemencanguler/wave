@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://game/obstacles/box.gd" type="Script" id=1]
-[ext_resource path="res://game/obstacles/box.png" type="Texture" id=2]
+[ext_resource path="res://game/obstacles/safe_box.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -23,8 +23,8 @@ bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 0
-contact_monitor = false
+contacts_reported = 2
+contact_monitor = true
 sleeping = false
 can_sleep = true
 velocity/linear = Vector2( 0, 0 )
@@ -32,6 +32,7 @@ velocity/angular = 0.0
 damp_override/linear = -1.0
 damp_override/angular = -1.0
 script/script = ExtResource( 1 )
+dangerous = false
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -42,5 +43,7 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[connection signal="body_enter" from="." to="." method="_on_Box_body_enter"]
 
 

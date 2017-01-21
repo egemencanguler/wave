@@ -4,9 +4,19 @@ extends RigidBody2D
 
 const C = preload("res://constants.gd")
 const Bullet = preload("res://game/character/gun/bullet.gd")
+const Character = preload("res://game/character/character.gd")
 const U = preload("res://utilities/util.gd")
 
+const TEX_SAFE = preload("res://game/obstacles/safe_box.png")
+const TEX_DAN = preload("res://game/obstacles/dan_box.png")
+
+export(bool) var dangerous = false
+
 func _ready():
+	if dangerous:
+		get_node("Sprite").set_texture(TEX_DAN)
+	else:
+		get_node("Sprite").set_texture(TEX_SAFE)
 	add_to_group(C.GROUP_EXPLOTION)
 	pass
 
@@ -32,3 +42,9 @@ func _sendRay(from, to):
 	return null
 
 
+
+
+func _on_Box_body_enter( body ):
+	if body extends Character and dangerous:
+		body.kill()
+	pass # replace with function body

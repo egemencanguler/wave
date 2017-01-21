@@ -6,12 +6,12 @@
 [ext_resource path="res://game/background/ground.png" type="Texture" id=4]
 [ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, 648, 1296, 648, 1296, 792, 0, 792 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 648, 360, 1080, 360, 1080, 432, 648, 432 )
@@ -29,6 +29,11 @@ levelNumber = 3
 [node name="Box" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 680, 320 )
+dangerous = true
+
+[node name="Box1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 248, 608 )
 
 [node name="Character" parent="." instance=ExtResource( 3 )]
 
@@ -97,10 +102,10 @@ texture = ExtResource( 4 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 5 )
+shapes/1/shape = SubResource( 2 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
 collision/layers = 1
@@ -130,7 +135,7 @@ curve = SubResource( 3 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 
-transform/pos = Vector2( 360, 576 )
+transform/pos = Vector2( 360.002, 576 )
 offset = 1139.58
 h_offset = 0.0
 v_offset = 0.0
