@@ -78,7 +78,7 @@ func kill():
 
 func _handleCollision():
 	var object = get_collider()
-	if object extends Enemy or object extends EnemyBullet:
+	if object extends Enemy or object extends EnemyBullet or (object extends Box and object.dangerous):
 		kill()
 func _onControllableChanged(con):
 	controllable = !con
