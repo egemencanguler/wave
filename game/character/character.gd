@@ -57,6 +57,7 @@ func _fixed_process(delta):
 			velocity.x = 0
 			acceleration.x = 0
 	move(motion)
+	_handleCollision()
 	if is_colliding():
 		var n = get_collision_normal()
 		var na = abs(n.angle())
@@ -72,12 +73,17 @@ func _fixed_process(delta):
 			motion = n.slide(motion)
 			velocity = n.slide(velocity)
 			move(motion)
+			_handleCollision()
 	if Input.is_action_pressed("click") and controllable:
 		if !get_node("Gun").cooldown:
 			get_node("SamplePlayer2D").play("char_fire")
 		get_node("Gun").shoot()
 
+var killed = false
 func kill():
+	if killed:
+		return
+	killed = true
 	emit_signal("die")
 	print("Death")
 #	queue_free()

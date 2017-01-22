@@ -42,8 +42,6 @@ func _sendRay(from, to):
 	return null
 
 
-
-
 func _on_Box_body_enter( body ):
 	if body extends Character and dangerous:
 		body.kill()
