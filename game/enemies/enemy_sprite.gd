@@ -25,6 +25,7 @@ func walkAnim(start):
 			get_node("Movement").play("walk")
 	else:
 		get_node("Movement").stop()
+		get_node("BodyAnimated").set_frame(0)
 
 func setBrainMode(on):
 	if on:

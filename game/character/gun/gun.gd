@@ -3,7 +3,7 @@ extends Node2D
 
 const Bullet = preload("res://game/character/gun/bullet.tscn")
 const TEX_TARGET = preload("res://game/character/gun/target.png")
-const TEX_BRAIN = preload("res://game/character/gun/bullet.png")
+const TEX_BRAIN = preload("res://game/character/gun/brain.png")
 const CHAR_WIDTH = 50
 
 var bulletSpeed = 700

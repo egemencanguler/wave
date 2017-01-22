@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=16 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/background/mouse.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -60,17 +61,22 @@ levelNumber = 5
 
 transform/pos = Vector2( 104, 464 )
 
-[node name="Enemy" parent="." instance=ExtResource( 3 )]
+[node name="TileMap" parent="." instance=ExtResource( 3 )]
+
+tile_data = IntArray( 15, 1, 16, 1, 65551, 1, 65552, 1, 131087, 1, 131088, 1, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196623, 1, 196624, 1, 262159, 1, 262160, 1, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 0, 458768, 0, 458769, 0, 458770, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524299, 1, 524300, 1, 524301, 1, 524302, 1, 524303, 1, 524304, 1, 524305, 1, 524306, 1, 589824, 1, 589825, 1, 589826, 1, 589827, 1, 589828, 1, 589829, 1, 589830, 1, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 1, 589836, 1, 589837, 1, 589838, 1, 589839, 1, 589840, 1, 589841, 1, 589842, 1 )
+
+[node name="Enemy" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 104, 104 )
 
-[node name="Box" parent="." instance=ExtResource( 4 )]
+[node name="Box" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 464, 248 )
+transform/pos = Vector2( 464, 176 )
 
-[node name="Box1" parent="." instance=ExtResource( 4 )]
+[node name="Box1" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 608, 248 )
+transform/pos = Vector2( 608, 176 )
+dangerous = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -130,8 +136,9 @@ polygon = Vector2Array( 1080, 360, 1224, 360, 1224, 0, 1080, 0 )
 shape_range = Vector2( 8, 8 )
 trigger = false
 
-[node name="TileMap" parent="." instance=ExtResource( 5 )]
+[node name="Sprite" type="Sprite" parent="."]
 
-tile_data = IntArray( 15, 1, 16, 1, 65551, 1, 65552, 1, 131087, 1, 131088, 1, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196623, 1, 196624, 1, 262159, 1, 262160, 1, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 0, 458768, 0, 458769, 0, 458770, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524299, 1, 524300, 1, 524301, 1, 524302, 1, 524303, 1, 524304, 1, 524305, 1, 524306, 1, 589824, 1, 589825, 1, 589826, 1, 589827, 1, 589828, 1, 589829, 1, 589830, 1, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 1, 589836, 1, 589837, 1, 589838, 1, 589839, 1, 589840, 1, 589841, 1, 589842, 1 )
+transform/pos = Vector2( 1133, 615 )
+texture = ExtResource( 6 )
 
 

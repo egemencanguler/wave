@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=3]
 [ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/background/mouse_wb.png" type="Texture" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -64,5 +65,10 @@ transform/pos = Vector2( 752, 464 )
 [node name="TileMap" parent="." instance=ExtResource( 4 )]
 
 tile_data = IntArray( 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 0, 589840, 0, 589841, 0, 655360, 1, 655361, 1, 655362, 1, 655363, 1, 655364, 1, 655365, 1, 655366, 1, 655367, 1, 655368, 1, 655369, 1, 655370, 1, 655371, 1, 655372, 1, 655373, 1, 655374, 1, 655375, 1, 655376, 1, 655377, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 557, 255 )
+texture = ExtResource( 5 )
 
 

@@ -23,6 +23,9 @@ signal die()
 func _ready():
 	set_fixed_process(true)
 	set_process(true)
+	set_process_unhandled_input(true)
+
+
 
 func _fixed_process(delta):
 	_handleCollision()
@@ -114,11 +117,11 @@ func changeAnimationState(s):
 	if state == STATE_MOVING_LEFT:
 		var scale = get_node("AnimatedSprite").get_scale()
 		scale.x = -abs(scale.x)
-		get_node("AnimatedSprite").set_scale(scale)
+#		get_node("AnimatedSprite").set_scale(scale)
 	elif state == STATE_MOVING_RIGHT:
 		var scale = get_node("AnimatedSprite").get_scale()
 		scale.x = abs(scale.x)
-		get_node("AnimatedSprite").set_scale(scale)
+#		get_node("AnimatedSprite").set_scale(scale)
 	elif state == STATE_NOT_MOVING:
 		get_node("AnimationPlayer").stop()
 		get_node("AnimatedSprite").set_frame(6)
@@ -141,12 +144,45 @@ func _stand():
 #	get_node("Sprite").set_scale(Vector2(1,1))
 
 func _process(delta):
-	if state == STATE_MOVING_LEFT or state == STATE_MOVING_RIGHT:
-		if !get_node("AnimationPlayer").is_playing():
+	if state == STATE_MOVING_LEFT:
+		if get_node("AnimatedSprite").get_scale().x < 0:
+			_playWalk()
+		else:
+			_playWalkBack()
+	elif state == STATE_MOVING_RIGHT:
+		if get_node("AnimatedSprite").get_scale().x < 0:
+			_playWalkBack()
+		else:
+			_playWalk()
+
+
+func _playWalk():
+#	get_node("AnimatedSprite").set_modulate(Color(1,1,1,1))
+	if !get_node("AnimationPlayer").is_playing():
 			get_node("AnimationPlayer").play("walk")
 
+func _playWalkBack():
+#	get_node("AnimatedSprite").set_modulate(Color(0,1,0,1))
+	if !get_node("AnimationPlayer").is_playing():
+			get_node("AnimationPlayer").play_backwards("walk")
 func _onEnemyMouseEnter(enter):
 	if enter:
 		get_node("Gun").changeCursorBrain()
 	else:
 		get_node("Gun").changeCursorGun()
+
+var walkBack = false
+func _unhandled_input(event):
+	var mpos = get_global_mouse_pos()
+	var pos = get_global_pos()
+	if pos.x < mpos.x :
+		#Mouse on right
+		var scale = get_node("AnimatedSprite").get_scale()
+		scale.x = abs(scale.x)
+		get_node("AnimatedSprite").set_scale(scale)
+	else:
+		var scale = get_node("AnimatedSprite").get_scale()
+		scale.x = -abs(scale.x)
+		get_node("AnimatedSprite").set_scale(scale)
+	var angle = (mpos - pos).angle()
+	
