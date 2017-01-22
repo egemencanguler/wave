@@ -27,7 +27,7 @@ collision/mask = 1
 mode = 2
 mass = 20.0
 friction = 0.3
-bounce = 0.3
+bounce = 0.0
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
@@ -67,7 +67,7 @@ params/pitch_scale = 1.0
 params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
-config/polyphony = 1
+config/polyphony = 3
 config/samples = SubResource( 2 )
 config/pitch_random = 0.0
 

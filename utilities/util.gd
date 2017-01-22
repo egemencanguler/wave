@@ -20,3 +20,4 @@ static func discretizeVec(vec, startAngle, numberOfParts):
 	angle = angle * numberOfParts
 	return int(angle)
 
+

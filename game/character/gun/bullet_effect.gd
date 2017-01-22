@@ -4,6 +4,7 @@ extends Sprite
 
 var remove = false
 func _ready():
+	get_node("SamplePlayer2D").play("shockwave")
 	set_process(true)
 	get_node("Timer").start(1)
 #	set_pos(Vector2(0,0))

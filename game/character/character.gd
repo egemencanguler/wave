@@ -4,9 +4,9 @@ extends KinematicBody2D
 const GRAVITY = 1200.0
 const WALK_ACCELERATION = 1000
 const WALK_SLOW_ACCELERATION = 1000
-const WALK_MAX_SPEED = 300
+const WALK_MAX_SPEED = 400
 const MIN_SPEED = 30
-const JUMP = 550
+const JUMP = 500
 
 var velocity = Vector2()
 var acceleration = Vector2()
@@ -65,11 +65,15 @@ func _fixed_process(delta):
 			changeAnimationState(STATE_JUMPING)
 			onAir = true
 			velocity.y = -JUMP
+			print("Jump")
+			get_node("SamplePlayer2D").play("jump")
 		else:
 			motion = n.slide(motion)
 			velocity = n.slide(velocity)
 			move(motion)
 	if Input.is_action_pressed("click") and controllable:
+		if !get_node("Gun").cooldown:
+			get_node("SamplePlayer2D").play("char_fire")
 		get_node("Gun").shoot()
 
 func kill():

@@ -95,7 +95,6 @@ trigger = false
 [node name="CollisionPolygon2D 3" type="CollisionPolygon2D" parent="StaticBody2D"]
 
 transform/pos = Vector2( -625.53, 165.6 )
-transform/scale = Vector2( 1, 1 )
 build_mode = 0
 polygon = Vector2Array( 625.53, -21.6, 625.53, 50.4, 913.13, 50.4, 913.13, -21.6 )
 shape_range = Vector2( 2, 2 )

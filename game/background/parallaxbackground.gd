@@ -2,6 +2,7 @@
 extends ParallaxBackground
 
 const MAX_SPEED = 30
+const MIN_SPEED = 10
 var clouds = null
 var cloudSpeeds = {}
 func _ready():
@@ -14,18 +15,15 @@ func _ready():
 	pass
 
 func _randomSpeed():
-	var speed = rand_range(-MAX_SPEED,MAX_SPEED)
+	var speed = rand_range(MIN_SPEED,MAX_SPEED)
 	return Vector2(speed,0)
 
 func _process(delta):
 	for c in clouds:
 		var pos = c.get_pos() + cloudSpeeds[c] * delta
-		if pos.x < 0:
-			pos.x = 0
-			cloudSpeeds[c].x = abs(cloudSpeeds[c].x)
-		elif pos.x > 1270:
-			pos.x = 1270
-			cloudSpeeds[c].x = -abs(cloudSpeeds[c].x)
+		if pos.x > 1270 + c.get_texture().get_width()/2:
+			pos.x = -150
+			cloudSpeeds[c] = _randomSpeed()
 		c.set_pos(pos)
 	
 
