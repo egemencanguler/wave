@@ -1,11 +1,11 @@
 [gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
-[ext_resource path="res://game/background/lamp2.png" type="Texture" id=2]
-[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=4]
-[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=5]
-[ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=6]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=5]
+[ext_resource path="res://game/background/lamp2.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -46,19 +46,6 @@ _data = { "points":Vector2Array( 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 72, 144, 0, 0, 
 
 script/script = ExtResource( 1 )
 levelNumber = 6
-
-[node name="Sprite" type="Sprite" parent="."]
-
-transform/pos = Vector2( 1227, 468 )
-transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-
-[node name="Sprite1" type="Sprite" parent="."]
-
-transform/pos = Vector2( 147, 468 )
-transform/scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 2 )
-flip_h = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -118,28 +105,41 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Enemy" parent="Path2D1/PathFollow2D" instance=ExtResource( 3 )]
+[node name="Enemy" parent="Path2D1/PathFollow2D" instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 0, -29 )
 shoot = true
 shootInterval = 0.3
 
-[node name="Character" parent="." instance=ExtResource( 4 )]
+[node name="Character" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 104, 608 )
 
-[node name="Box" parent="." instance=ExtResource( 5 )]
+[node name="Box" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 320, 608 )
 
-[node name="Box1" parent="." instance=ExtResource( 5 )]
+[node name="Box1" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 824, 320 )
 mass = 50.0
 dangerous = true
 
-[node name="TileMap" parent="." instance=ExtResource( 6 )]
+[node name="TileMap" parent="." instance=ExtResource( 5 )]
 
 tile_data = IntArray( 327688, 0, 327689, 0, 327690, 0, 327691, 0, 524303, 0, 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 1, 589840, 0, 589841, 0 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+transform/pos = Vector2( 1227, 479 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Sprite1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 147, 480 )
+transform/scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+flip_h = true
 
 
