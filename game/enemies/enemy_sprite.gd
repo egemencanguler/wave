@@ -19,6 +19,13 @@ func shootAnim():
 		get_node("AnimationPlayer").stop()
 	get_node("AnimationPlayer").play("shoot")
 
+func walkAnim(start):
+	if start:
+		if !get_node("Movement").is_playing():
+			get_node("Movement").play("walk")
+	else:
+		get_node("Movement").stop()
+
 func setBrainMode(on):
 	if on:
 		for c in get_children():

@@ -35,7 +35,7 @@ func _onExplotion(explotionPos):
 
 func _sendRay(from, to):
 	var space_state = get_world_2d().get_direct_space_state()
-	var result = space_state.intersect_ray(from,to,[self])
+	var result = space_state.intersect_ray(from,to,[self,get_tree().get_current_scene().get_node("Character")])
 	print(result,self)
 	if (not result.empty()):
 		return result.collider

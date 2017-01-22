@@ -12,10 +12,11 @@
 [ext_resource path="res://sounds/char_fire.wav" type="Sample" id=10]
 [ext_resource path="res://sounds/jump.wav" type="Sample" id=11]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=5]
 
 custom_solver_bias = 0.0
-extents = Vector2( 16, 50 )
+radius = 20.0
+height = 60.0
 
 [sub_resource type="SpriteFrames" id=2]
 

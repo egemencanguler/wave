@@ -87,11 +87,14 @@ func changeAnimationState(s):
 	if state == STATE_MOVING_LEFT:
 		get_node("Sprite").set_scale(Vector2(-1,1))
 		get_node("CollisionShape2D").set_scale(Vector2(-1,1))
+		get_node("Sprite").walkAnim(true)
 	elif state == STATE_MOVING_RIGHT:
 		get_node("Sprite").set_scale(Vector2(1,1))
 		get_node("CollisionShape2D").set_scale(Vector2(1,1))
+		get_node("Sprite").walkAnim(true)
 	elif state == STATE_NOT_MOVING:
 		print("Not moving")
+		get_node("Sprite").walkAnim(false)
 
 
 func shoot():
