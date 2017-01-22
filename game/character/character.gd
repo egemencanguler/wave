@@ -68,6 +68,7 @@ func _fixed_process(delta):
 			onAir = true
 			velocity.y = -JUMP
 			print("Jump")
+			get_node("SamplePlayer2D").set_random_pitch_scale(0)
 			get_node("SamplePlayer2D").play("jump")
 		else:
 			motion = n.slide(motion)
@@ -76,6 +77,7 @@ func _fixed_process(delta):
 			_handleCollision()
 	if Input.is_action_pressed("click") and controllable:
 		if !get_node("Gun").cooldown:
+			get_node("SamplePlayer2D").set_random_pitch_scale(0.5)
 			get_node("SamplePlayer2D").play("char_fire")
 		get_node("Gun").shoot()
 

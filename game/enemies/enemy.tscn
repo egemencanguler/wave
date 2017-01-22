@@ -14,7 +14,7 @@ height = 60.0
 [sub_resource type="SampleLibrary" id=2]
 
 samples/death = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
-samples/fire = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
+samples/fire = { "db":-20.0, "pitch":1.0, "sample":ExtResource( 4 ) }
 
 [node name="Enemy" type="RigidBody2D"]
 
@@ -69,7 +69,7 @@ params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 3
 config/samples = SubResource( 2 )
-config/pitch_random = 0.0
+config/pitch_random = 0.2
 
 [connection signal="body_enter" from="." to="." method="_on_Enemy_body_enter"]
 
