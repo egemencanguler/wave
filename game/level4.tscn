@@ -86,8 +86,8 @@ dangerous = true
 
 transform/pos = Vector2( 548, 290 )
 shoot = true
-shootInterval = 0.6
-shootAngle = -30.0
+shootInterval = 0.15
+shootAngle = -50.0
 
 [node name="Character" parent="." instance=ExtResource( 4 )]
 

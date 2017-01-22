@@ -26,6 +26,8 @@ func gameOver():
 	get_tree().change_scene(getLevelPath(levelNumber))
 
 func getLevelPath(levelNumber):
+	if levelNumber == 11:
+		return "res://game/gameover.tscn"
 	return "res://game/level" + str(levelNumber) + ".tscn"
 
 func _unhandled_input(event):

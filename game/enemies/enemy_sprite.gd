@@ -20,4 +20,12 @@ func shootAnim():
 	get_node("AnimationPlayer").play("shoot")
 
 func setBrainMode(on):
+	if on:
+		for c in get_children():
+			if c.has_method("set_modulate"):
+				c.set_modulate(Color(1,0,0,1))
+	else:
+		for c in get_children():
+			if c.has_method("set_modulate"):
+				c.set_modulate(Color(1,1,1,1))
 	print("Brain Mode: ", on)

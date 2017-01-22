@@ -9,6 +9,7 @@ const Character = preload("res://game/character/character.gd")
 const SPEED = 150
 
 
+const BULLET_SPEED = 800
 export(bool) var shoot = false
 export(float) var shootInterval = 1
 export(float) var shootAngle = 0
@@ -54,8 +55,9 @@ func _fixed_process(delta):
 func _on_Enemy_body_enter( body ):
 	if body extends Box:
 		if body.dangerous:
-			print("HOOO")
+			set_process_unhandled_input(false)
 			emit_signal("controllableChanged",false)
+			emit_signal("mouseEnter",false)
 			get_node("SamplePlayer2D").play("death")
 			var timer = Timer.new()
 			hide()
@@ -63,6 +65,8 @@ func _on_Enemy_body_enter( body ):
 			timer.connect("timeout", self, "queue_free")
 			timer.set_wait_time(0.5)
 			timer.start()
+	elif body extends Character:
+		body.kill()
 
 func connectPlayer(player):
 	connect("controllableChanged",player,"_onControllableChanged")
@@ -90,7 +94,6 @@ func changeAnimationState(s):
 		print("Not moving")
 
 
-const BULLET_SPEED = 300
 func shoot():
 	get_node("Sprite").shootAnim()
 	get_node("SamplePlayer2D").play("fire")

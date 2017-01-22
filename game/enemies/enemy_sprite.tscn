@@ -41,6 +41,7 @@ offset = Vector2( 35, -4 )
 
 [node name="leg2_2" type="Sprite" parent="."]
 
+transform/rot = -14.1207
 texture = ExtResource( 3 )
 offset = Vector2( 35, -4 )
 

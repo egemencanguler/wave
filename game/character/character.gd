@@ -3,8 +3,8 @@ extends KinematicBody2D
 
 const GRAVITY = 1200.0
 const WALK_ACCELERATION = 1000
-const WALK_SLOW_ACCELERATION = 1000
-const WALK_MAX_SPEED = 400
+const WALK_SLOW_ACCELERATION = 1500
+const WALK_MAX_SPEED = 350
 const MIN_SPEED = 30
 const JUMP = 500
 
@@ -25,6 +25,7 @@ func _ready():
 	set_process(true)
 
 func _fixed_process(delta):
+	_handleCollision()
 	var moveLeft = Input.is_action_pressed("ui_left")
 	var moveRight = Input.is_action_pressed("ui_right")
 	var lean = Input.is_action_pressed("ui_down")
@@ -57,11 +58,11 @@ func _fixed_process(delta):
 			acceleration.x = 0
 	move(motion)
 	if is_colliding():
-		_handleCollision()
 		var n = get_collision_normal()
-		if abs(n.angle()) > 2.5:
+		var na = abs(n.angle())
+		if na > 2:
 			onAir = false
-		if Input.is_action_pressed("ui_up") and abs(n.angle()) > 2.5 and controllable:
+		if Input.is_action_pressed("ui_up") and na > 2 and controllable:
 			changeAnimationState(STATE_JUMPING)
 			onAir = true
 			velocity.y = -JUMP
@@ -78,9 +79,12 @@ func _fixed_process(delta):
 
 func kill():
 	emit_signal("die")
-	queue_free()
+	print("Death")
+#	queue_free()
 
 func _handleCollision():
+	if !is_colliding():
+		return
 	var object = get_collider()
 	if object extends Enemy or object extends EnemyBullet or (object extends Box and object.dangerous):
 		kill()

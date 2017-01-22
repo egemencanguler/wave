@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
@@ -42,6 +42,11 @@ custom_solver_bias = 0.0
 points = Vector2Array( 792, 648, 1224, 720, -72, 720, 504, 648 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1224, 504, 1368, 504, 1368, 720, 1224, 720 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 1080, 0, 1224, 0, 1224, 360, 1080, 360 )
@@ -94,6 +99,9 @@ shapes/6/trigger = false
 shapes/7/shape = SubResource( 8 )
 shapes/7/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/7/trigger = false
+shapes/8/shape = SubResource( 9 )
+shapes/8/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/8/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -108,15 +116,22 @@ polygon = Vector2Array( 0, 0, 0, 216, 792, 216, 792, 288, 0, 288, 0, 576, 504, 5
 shape_range = Vector2( 0, 6 )
 trigger = false
 
+[node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="StaticBody2D"]
+
+build_mode = 0
+polygon = Vector2Array( 1224, 504, 1368, 504, 1368, 720, 1224, 720 )
+shape_range = Vector2( 7, 7 )
+trigger = false
+
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="StaticBody2D"]
 
 build_mode = 0
 polygon = Vector2Array( 1080, 360, 1224, 360, 1224, 0, 1080, 0 )
-shape_range = Vector2( 7, 7 )
+shape_range = Vector2( 8, 8 )
 trigger = false
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]
 
-tile_data = IntArray( 15, 1, 16, 1, 65551, 1, 65552, 1, 131087, 1, 131088, 1, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196623, 1, 196624, 1, 262159, 1, 262160, 1, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 0, 458768, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524299, 1, 524300, 1, 524301, 1, 524302, 1, 524303, 1, 524304, 1, 589824, 1, 589825, 1, 589826, 1, 589827, 1, 589828, 1, 589829, 1, 589830, 1, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 1, 589836, 1, 589837, 1, 589838, 1, 589839, 1, 589840, 1 )
+tile_data = IntArray( 15, 1, 16, 1, 65551, 1, 65552, 1, 131087, 1, 131088, 1, 196608, 0, 196609, 0, 196610, 0, 196611, 0, 196612, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196623, 1, 196624, 1, 262159, 1, 262160, 1, 458763, 0, 458764, 0, 458765, 0, 458766, 0, 458767, 0, 458768, 0, 458769, 0, 458770, 0, 524288, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524299, 1, 524300, 1, 524301, 1, 524302, 1, 524303, 1, 524304, 1, 524305, 1, 524306, 1, 589824, 1, 589825, 1, 589826, 1, 589827, 1, 589828, 1, 589829, 1, 589830, 1, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 1, 589836, 1, 589837, 1, 589838, 1, 589839, 1, 589840, 1, 589841, 1, 589842, 1 )
 
 

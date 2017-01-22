@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=2]
@@ -6,20 +6,35 @@
 [ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=5]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 648, 1296, 648, 1296, 720, -72, 720 )
+points = Vector2Array( -72, 216, 0, 216, 0, 648, -72, 720 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
-
-custom_solver_bias = 0.0
-points = Vector2Array( 0, 648, -72, 720, -72, 216, 0, 216 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 1008, 360, 1008, 432, 576, 432, 576, 360 )
+points = Vector2Array( 1296, 720, -72, 720, 0, 648, 1080, 648 )
+
+[sub_resource type="ConvexPolygonShape2D" id=7]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1080, 648, 1080, 576, 1152, 576, 1152, 648 )
+
+[sub_resource type="ConvexPolygonShape2D" id=8]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1296, 720, 1080, 648, 1152, 648 )
+
+[sub_resource type="ConvexPolygonShape2D" id=9]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 1296, 720, 1152, 648, 1296, 648 )
+
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 576, 360, 864, 360, 864, 432, 576, 432 )
 
 [sub_resource type="Curve2D" id=4]
 
@@ -34,15 +49,24 @@ levelNumber = 6
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
-shapes/1/shape = SubResource( 2 )
+shapes/1/shape = SubResource( 6 )
 shapes/1/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/1/trigger = false
-shapes/2/shape = SubResource( 3 )
+shapes/2/shape = SubResource( 7 )
 shapes/2/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/2/trigger = false
+shapes/3/shape = SubResource( 8 )
+shapes/3/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/3/trigger = false
+shapes/4/shape = SubResource( 9 )
+shapes/4/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/4/trigger = false
+shapes/5/shape = SubResource( 10 )
+shapes/5/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/5/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -53,15 +77,15 @@ bounce = 0.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 
 build_mode = 0
-polygon = Vector2Array( 0, 216, -72, 216, -72, 720, 1296, 720, 1296, 648, 0, 648 )
-shape_range = Vector2( 0, 1 )
+polygon = Vector2Array( 0, 216, 0, 648, 1080, 648, 1080, 576, 1152, 576, 1152, 648, 1296, 648, 1296, 720, -72, 720, -72, 216 )
+shape_range = Vector2( 0, 4 )
 trigger = false
 
 [node name="CollisionPolygon2D1" type="CollisionPolygon2D" parent="StaticBody2D"]
 
 build_mode = 0
-polygon = Vector2Array( 576, 360, 576, 432, 1008, 432, 1008, 360 )
-shape_range = Vector2( 2, 2 )
+polygon = Vector2Array( 576, 360, 864, 360, 864, 432, 576, 432 )
+shape_range = Vector2( 5, 5 )
 trigger = false
 
 [node name="Path2D1" type="Path2D" parent="."]
@@ -96,12 +120,12 @@ transform/pos = Vector2( 320, 608 )
 
 [node name="Box1" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 916, 320 )
+transform/pos = Vector2( 824, 320 )
 mass = 50.0
 dangerous = true
 
 [node name="TileMap" parent="." instance=ExtResource( 5 )]
 
-tile_data = IntArray( 327688, 0, 327689, 0, 327690, 0, 327691, 0, 327692, 0, 327693, 0, 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 0, 589840, 0, 589841, 0 )
+tile_data = IntArray( 327688, 0, 327689, 0, 327690, 0, 327691, 0, 524303, 0, 589824, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 0, 589835, 0, 589836, 0, 589837, 0, 589838, 0, 589839, 1, 589840, 0, 589841, 0 )
 
 

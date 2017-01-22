@@ -1,64 +1,74 @@
-[gd_scene load_steps=15 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
-[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/background/tile_map.tscn" type="PackedScene" id=2]
+[ext_resource path="res://game/character/character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/obstacles/box.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/enemies/enemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 504, 0, 216, 214.635, 216.046, 214.635, 432.046 )
+points = Vector2Array( 718.935, 432.046, 718.935, 288.046, 862.935, 288.046, 1366.94, 504.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 789.835, 288.046, 1077.44, 72.0462, 1509.9, 72, 1509.9, 504, 717.935, 432.046 )
+points = Vector2Array( 1222.94, 144.046, 1222.94, 72.046, 1366.94, 72.046, 1366.94, 504.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 502.235, 432.046, 502.235, 288.046, 574.135, 288.046, 574.135, 432.046 )
+points = Vector2Array( -73.0646, 504.046, -73.0646, -215.954, -1.06457, -215.954, -1.06457, 216.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 717.935, 432.046, 717.935, 288.046, 789.835, 288.046 )
+points = Vector2Array( -1.06457, 216.046, 214.935, 216.046, 214.935, 432.046, -73.0646, 504.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 717.935, 432.046, 1509.9, 504, 0, 504, 574.135, 432.046 )
+points = Vector2Array( 1366.94, 504.046, -73.0646, 504.046, 214.935, 432.046, 502.935, 432.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 502.235, 432.046, 574.135, 432.046, 0, 504 )
+points = Vector2Array( 502.935, 432.046, 502.935, 288.046, 574.935, 288.046, 574.935, 432.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 214.635, 432.046, 502.235, 432.046, 0, 504 )
+points = Vector2Array( 1366.94, 504.046, 502.935, 432.046, 574.935, 432.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 0, 504, 214.635, 432.046, 0, 504 )
+points = Vector2Array( 1366.94, 504.046, 574.935, 432.046, 718.935, 432.046 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
-points = Vector2Array( 79.09, 266.4, 222.89, 266.4, 222.89, 338.4, 79.09, 338.4 )
+points = Vector2Array( 1222.94, 144.046, 1366.94, 504.046, 862.935, 288.046, 1006.94, 144.046 )
 
-[sub_resource type="Curve2D" id=10]
+[sub_resource type="ConvexPolygonShape2D" id=10]
+
+custom_solver_bias = 0.0
+points = Vector2Array( 79.19, 266.4, 223.19, 266.4, 223.19, 338.4, 79.19, 338.4 )
+
+[sub_resource type="Curve2D" id=11]
 
 bake_interval = 5.0
-_data = { "points":Vector2Array( 0, 0, 0, 0, -143.8, 0, 0, 0, 0, 0, 143.8, 0, 0, 0, 0, 0, -71.9, -72, 0, 0, 0, 0, -143.8, 0 ) }
+_data = { "points":Vector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 144, 0, 0, 0, 0, 0, 0, 0 ) }
 
 [node name="level9" type="Node2D"]
 
 script/script = ExtResource( 1 )
 levelNumber = 9
+
+[node name="TileMap" parent="." instance=ExtResource( 2 )]
+
+tile_data = IntArray( 65537, 0, 65538, 0, 262161, 0, 262162, 0, 262163, 0, 262164, 0, 262165, 0, 327693, 2, 327694, 0, 327695, 0, 327696, 0, 327697, 1, 327698, 1, 327699, 1, 327700, 1, 327701, 1, 393216, 0, 393217, 0, 393218, 0, 393228, 2, 393229, 1, 393230, 1, 393231, 1, 393232, 1, 393233, 1, 393234, 1, 393235, 1, 393236, 1, 393237, 1, 458752, 1, 458753, 1, 458754, 1, 458759, 0, 458762, 0, 458763, 0, 458764, 1, 458765, 1, 458766, 1, 458767, 1, 458768, 1, 458769, 1, 458770, 1, 458771, 1, 458772, 1, 458773, 1, 524288, 1, 524289, 1, 524290, 1, 524295, 1, 524298, 1, 524299, 1, 524300, 1, 524301, 1, 524302, 1, 524303, 1, 524304, 1, 524305, 1, 524306, 1, 524307, 1, 524308, 1, 524309, 1, 589824, 1, 589825, 1, 589826, 1, 589827, 0, 589828, 0, 589829, 0, 589830, 0, 589831, 0, 589832, 0, 589833, 0, 589834, 1, 589835, 1, 589836, 1, 589837, 1, 589838, 1, 589839, 1, 589840, 1, 589841, 1, 589842, 1, 589843, 1, 589844, 1, 589845, 1 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -88,8 +98,11 @@ shapes/7/shape = SubResource( 8 )
 shapes/7/transform = Matrix32( 1, 0, 0, 1, 1.06457, 215.954 )
 shapes/7/trigger = false
 shapes/8/shape = SubResource( 9 )
-shapes/8/transform = Matrix32( 1, 0, 0, 1, -7.19003, -194.4 )
+shapes/8/transform = Matrix32( 1, 0, 0, 1, 1.06457, 215.954 )
 shapes/8/trigger = false
+shapes/9/shape = SubResource( 10 )
+shapes/9/transform = Matrix32( 1, 0, 0, 1, -7.19003, -194.4 )
+shapes/9/trigger = false
 collision/layers = 1
 collision/mask = 1
 constant_linear_velocity = Vector2( 0, 0 )
@@ -101,34 +114,33 @@ bounce = 0.0
 
 transform/pos = Vector2( 1.06457, 215.954 )
 build_mode = 0
-polygon = Vector2Array( 0, 216, 0, 504, 0, 504, 1509.9, 504, 1509.9, 72, 1077.44, 72.0462, 789.835, 288.046, 717.935, 288.046, 717.935, 432.046, 574.135, 432.046, 574.135, 288.046, 502.235, 288.046, 502.235, 432.046, 214.635, 432.046, 214.635, 216.046 )
-shape_range = Vector2( 0, 7 )
+polygon = Vector2Array( 718.935, 288.046, 862.935, 288.046, 1006.94, 144.046, 1222.94, 144.046, 1222.94, 72.046, 1366.94, 72.046, 1366.94, 504.046, -73.0646, 504.046, -73.0646, -215.954, -1.06457, -215.954, -1.06457, 216.046, 214.935, 216.046, 214.935, 432.046, 502.935, 432.046, 502.935, 288.046, 574.935, 288.046, 574.935, 432.046, 718.935, 432.046 )
+shape_range = Vector2( 0, 8 )
 trigger = false
 
 [node name="CollisionPolygon2D 2" type="CollisionPolygon2D" parent="StaticBody2D"]
 
 transform/pos = Vector2( -7.19003, -194.4 )
 build_mode = 0
-polygon = Vector2Array( 79.09, 266.4, 222.89, 266.4, 222.89, 338.4, 79.09, 338.4 )
-shape_range = Vector2( 8, 8 )
+polygon = Vector2Array( 79.19, 266.4, 223.19, 266.4, 223.19, 338.4, 79.19, 338.4 )
+shape_range = Vector2( 9, 9 )
 trigger = false
 
-[node name="Character" parent="." instance=ExtResource( 2 )]
+[node name="Character" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 103.9, 392 )
 
-[node name="Box" parent="." instance=ExtResource( 3 )]
+[node name="Box" parent="." instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 175.8, 32 )
 
 [node name="Path2D" type="Path2D" parent="."]
 
-transform/pos = Vector2( 1038.6, 248 )
-curve = SubResource( 10 )
+transform/pos = Vector2( 896, 248 )
+curve = SubResource( 11 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
 
-transform/pos = Vector2( -143.8, 0 )
 offset = 0.0
 h_offset = 0.0
 v_offset = 0.0
@@ -137,9 +149,9 @@ cubic_interp = true
 loop = true
 lookahead = 4.0
 
-[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 4 )]
+[node name="Enemy" parent="Path2D/PathFollow2D" instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 215.7, 0 )
+transform/pos = Vector2( 217.2, 0 )
 shoot = true
 shootInterval = 0.6
 
